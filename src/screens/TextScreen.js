@@ -1,10 +1,35 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React ,{useState}from 'react';
+import { View, Text, StyleSheet,TextInput } from 'react-native';
 
 const TextScreen = () => {
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+
     return (
         <View>
-            <TextInput/>
+            <Text>Enter Name: </Text>
+            <TextInput 
+                style={styles.input}
+                autoCapitalize="none"
+                autoCorrect={false}
+                value={name}
+                onChangeText={(newValue) => setName(newValue)}
+            />
+            <Text>My name is {name}  </Text>
+
+            <Text>Enter Password: </Text>
+            <TextInput 
+                style={styles.input}
+                autoCapitalize="none"
+                autoCorrect={false}
+                secureTextEntry={true}
+                value={password}
+                onChangeText={(newValue) => setPassword(newValue)}
+            />
+            {password.length < 5 ? <Text>Password must be longer than 5 characters</Text> : null}
+
+            
+
         </View>
     );
 };
